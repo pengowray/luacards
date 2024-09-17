@@ -24,8 +24,8 @@ SOFTWARE.
 (() => {
     const script = document.createElement("script");
     script.innerHTML = document.currentScript.innerHTML;
-    if (document.currentScript.hasAttribute('type')) {
-        script.setAttribute('type', document.currentScript.getAttribute('type'));
+    if (document.currentScript.hasAttribute('totype')) {
+        script.setAttribute('type', document.currentScript.getAttribute('totype'));
     }
     document.currentScript.innerHTML = "";
     document.currentScript.remove();

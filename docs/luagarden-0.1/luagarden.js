@@ -123,6 +123,6 @@ class Log {
 }
 
 const log = new Log();
-window.webout = log;
+window.gardenlog = log;
 
 export default log;

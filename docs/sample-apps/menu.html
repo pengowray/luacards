@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lua in Browser</title>
+    <base href="https://pengowray.github.io/luagarden/luagarden-0.1/">
+    <script src="marked.min.js"></script>
+    <script src="fengari-web.js"></script>
+    <script src="luagarden.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="log-area"></div>
+<script totype="application/lua" src="defer.js">
+
+local js = require "js"
+local log = js.global.gardenlog
+
+log:print("# Welcome to Lua")
+log:print("This is a simple example.")
+
+function menu() 
+    log:clear();
+    log:print("What to do now?")
+    log:createButton("Tell a joke", joke)
+    log:createButton("Player profiles", profile)
+    log:createButton("Make something else", editme)
+
+end
+
+function joke()
+    log:print("Why did the chicken cross the road?")
+    log:createButton("Answer", answer)
+end
+
+function answer()
+    log:print("To get to the other side!")
+    log:createButton("Back to menu", showMenu)
+end
+
+function profile()
+    local person = {
+        name = "John Doe",
+        icon = "👨",
+        votes = 3,
+    }
+    log:printCard(js.new(js.global.Object, person))
+    log:printCard(js.new(js.global.Object, {name = "Jane Doe", icon = "👩", votes = 4}))
+    log:createButton("Back to menu", showMenu)
+end
+
+function editme()
+    log:print("# You can edit this file!")
+    log:print("Edit the Lua to make this do what you want.")
+    log:createButton("Back to menu", showMenu)
+end
+
+menu()
+
+</script>
+</body>
+</html>

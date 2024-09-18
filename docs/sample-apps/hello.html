@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lua in Browser</title>
+    <base href="https://pengowray.github.io/luagarden/luagarden-0.1/">
+    <script src="marked.min.js"></script>
+    <script src="fengari-web.js"></script>
+    <script src="luagarden.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="log-area"></div>
+<script totype="application/lua" src="defer.js">
+local js = require "js"
+local log = js.global.gardenlog  
+print = (function(string)
+  log:print(string)
+end)
+
+print("# Hello world!")
+print(" - a simple thing")
+
+a = 2 + 2
+print("Total: " .. a)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lua in Browser</title>
+    <base href="https://pengowray.github.io/luagarden/luagarden-0.1/">
+    <script src="marked.min.js"></script>
+    <script src="fengari-web.js"></script>
+    <script src="luagarden.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="log-area"></div>
+
+<script totype="application/lua" src="defer.js">
+local js = require "js"
+local log = js.global.gardenlog
+
+local players = {
+    {name = "Alice", icon = "👩", role = "Civilian", knowledge = "None", status = "Alive", votes = 0},
+    {name = "Bob", icon = "👨", role = "Mafia", knowledge = "Knows other Mafia members", status = "Alive", votes = 0},
+    {name = "Charlie", icon = "🧑", role = "Detective", knowledge = "Can investigate one player per night", status = "Alive", votes = 0}
+}
+
+local function printAllPlayers()
+    for _, player in ipairs(players) do
+        log:printCard(js.new(js.global.Object, player))
+    end
+end
+
+log:print("# Welcome to the Mafia Party Game Simulation")
+log:print("Here are the initial player states:")
+printAllPlayers()
+
+log:createButton("Start Simulation", function()
+    log:print("# Simulation Started")
+    log:print("## Night Phase")
+    log:print("The Mafia chooses a target...")
+    log:print("The Detective investigates a player...")
+    
+    log:print("## Day Phase")
+    log:print("Players discuss and vote...")
+    
+    -- Update players
+    players[3].knowledge = "Investigated Alice, found to be Civilian"
+    players[3].votes = 2
+    players[1].status = "Eliminated"
+    players[1].votes = 3
+    
+    log:print("Updated player states:")
+    printAllPlayers()
+    
+    log:print("Simulation ended.")
+end)
+
+log:createButton("Reset Game", function()
+    for _, player in ipairs(players) do
+        player.status = "Alive"
+        player.votes = 0
+        player.knowledge = player.role == "Detective" and "Can investigate one player per night" or "None"
+    end
+    log:clear()
+    log:print("# Game Reset")
+    log:print("Player states reset to:")
+    printAllPlayers()
+end)
+
+</script>
+</body>
+</html>

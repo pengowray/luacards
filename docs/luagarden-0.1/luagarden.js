@@ -25,7 +25,7 @@ class ButtonOutput extends OutputElement {
     addButton(label, callback) {
         const button = document.createElement('button');
         button.textContent = label;
-        button.addEventListener('click', (event) => framework.handleButtonClick(event, label, callback));
+        button.addEventListener('click', (event) => gardenlog.handleButtonClick(event, label, callback));
         this.element.appendChild(button);
     }
 }
@@ -54,7 +54,7 @@ class CardOutput extends OutputElement {
     }
 }
 
-class Log {
+class GardenLog {
     constructor() {
         this.logArea = document.getElementById('log-area');
         this.currentElement = null;
@@ -122,7 +122,7 @@ class Log {
     }
 }
 
-const log = new Log();
-window.gardenlog = log;
+const gardenlog = new GardenLog();
+window.gardenlog = gardenlog;
 
-export default log;
+export default gardenlog;

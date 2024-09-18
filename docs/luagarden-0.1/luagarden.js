@@ -1,4 +1,3 @@
-// framework.js
 class OutputElement {
     constructor(type) {
         this.element = document.createElement('div');
@@ -55,7 +54,7 @@ class CardOutput extends OutputElement {
     }
 }
 
-class Framework {
+class Log {
     constructor() {
         this.logArea = document.getElementById('log-area');
         this.currentElement = null;
@@ -123,7 +122,7 @@ class Framework {
     }
 }
 
-const framework = new Framework();
-window.framework = framework;
+const log = new Log();
+window.webout = log;
 
-export default framework;
+export default log;

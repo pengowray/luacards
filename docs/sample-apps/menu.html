@@ -17,15 +17,15 @@
 local js = require "js"
 local log = js.global.gardenlog
 
-log:print("# Welcome to Lua")
-log:print("This is a simple example.")
 
 function menu() 
     log:clear();
+    log:print("## Welcome to Lua Garden.")
+
     log:print("What to do now?")
     log:createButton("Tell a joke", joke)
-    log:createButton("Player profiles", profile)
-    log:createButton("Make something else", editme)
+    log:createButton("Show player profiles", profile)
+    log:createButton("Make something better", editme)
 
 end
 
@@ -36,7 +36,8 @@ end
 
 function answer()
     log:print("To get to the other side!")
-    log:createButton("Back to menu", showMenu)
+    log:createButton("That joke is old!", editme)
+    log:createButton("Back to menu", menu)
 end
 
 function profile()
@@ -47,13 +48,18 @@ function profile()
     }
     log:printCard(js.new(js.global.Object, person))
     log:printCard(js.new(js.global.Object, {name = "Jane Doe", icon = "👩", votes = 4}))
-    log:createButton("Back to menu", showMenu)
+    log:createButton("How about different people?", editme)
+    log:createButton("Back to menu", menu)
 end
 
 function editme()
-    log:print("# You can edit this file!")
-    log:print("Edit the Lua to make this do what you want.")
-    log:createButton("Back to menu", showMenu)
+    log:print("## You can edit this file!")
+    log:print("Edit the Lua in this web page to so it creates more interesting experiences! It'll take some imagination.")
+    log:print("## How?")
+    log:print(" 1. Save this page to your computer, then open it in a text editor.")
+    log:print(" 2. Change the Lua code in the `<script>` tag to make it do something different.")
+    log:print(" 3. Save the file, then open it in a web browser.")
+    log:createButton("Back to menu", menu)
 end
 
 menu()
